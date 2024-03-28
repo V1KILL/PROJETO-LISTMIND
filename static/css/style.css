@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+div.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color:#ffffff;
+}
+
+div.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-top: 40px;
+    width: 100%;
+    max-width: 200px;
+    background-color: #5b7cfd;
+}
+
+p.logo {
+    color: white;
+    font-size: 2em;
+    font-weight: 600;
+    user-select: none;
+}
+
+div.perfil-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100px;
+    user-select: none;
+}
+
+div.perfil-image div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+div.perfil-image div p {
+    color: #bdbdbd;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+div.perfil-image img {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+div.features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    user-select: none;
+}
+
+div.features div.function {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+div.features div.function p {
+    font-weight: 500;
+}
+
+div.features div.function:hover {
+    background-color: #3a62ff;
+}
+
+div.usersarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #e7eef7;
+}
+
+table {
+    width: 80%;
+    text-align: left;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px 12px;
+}
+
+
+th, td {
+    padding: 15px;
+    border: none;
+}
+
+th {
+    color: #b8beca;
+    background-color: #f5f6fa;
+}
+
+td {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #6a7180;
+    background-color: white;
+}
+
+.swal2-confirm,
+.swal2-cancel {
+    transition: none !important;
+    animation: none !important;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+.pagination a, .pagination span {
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pagination span {
+    background-color: black;
+    color: white;
+}
+
+.pagination a {
+   background-color:white;
+   color: black;
+}

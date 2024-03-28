@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto - Cadastro de Usuários</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="perfil">
+            <p class="logo">ListMind</p>
+            <div class="perfil-image">
+                <img src="static/img/Perfil image.jpg" alt="">
+                <div>
+                    <p>Viktor Amaral</p>
+                    <p>@victoramaral369</p>
+                </div>
+            </div>
+            <div class="features">
+                <div onclick="AddMembro()" class="function">
+                    <i class="fa-sharp fa-solid fa-user-plus"></i>
+                    <p>Add Cliente</p>
+                </div>
+                <div class="function">
+                    <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                    <p>DashBoard</p>
+                </div>
+                <div class="function">
+                    <i class="fa-sharp fa-solid fa-house"></i>
+                    <p>Log Out</p> 
+                </div>
+                
+            </div>
+        </div>
+        <div class="usersarea">
+            <table border="1">
+                <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Price</th>
+                            <th>Date</th>                         
+                        </tr>
+                </thead>
+                <tbody >
+                    {% for cliente in clientes %}
+                        <tr>
+                            <td>{{ cliente.name }}</td>
+                            <td>{{ cliente.phonenumber }}</td>
+                            <td>{{ cliente.price}}R$</td>
+                            <td>{{ cliente.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>   
+            </table>
+            <div class="pagination">
+                
+                {% if clientes.has_previous %}
+                    
+                    <a href="?page={{ clientes.previous_page_number }}" class="fa-solid fa-arrow-left"></a>
+                {% endif %}
+        
+                
+                {% for num in clientes.paginator.page_range %}
+                    {% if clientes.number == num %}
+                        <span class="current">{{ num }}</span>
+                    {% else %}
+                    
+                        <a href="?page={{ num }}">{{ num }}</a>
+                    
+                    {% endif %}
+                {% endfor %}
+        
+                
+                {% if clientes.has_next %}
+                <a href="?page={{ clientes.next_page_number }}" class="fa-solid fa-arrow-right"></a>
+                    
+                {% endif %}
+            </div>  
+        </div>
+    </div>
+   
+    <script src="static/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css
+    " rel="stylesheet">
+</body>
+</html>
