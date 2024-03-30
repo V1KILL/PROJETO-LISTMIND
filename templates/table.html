@@ -1,0 +1,20 @@
+<table border="1">
+    <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Price</th>
+                <th>Date</th>                         
+            </tr>
+    </thead>
+    <tbody >
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.name }}</td>
+                <td>{{ cliente.phonenumber }}</td>
+                <td>{{ cliente.price}}R$</td>
+                <td>{{ cliente.date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>   
+</table>
