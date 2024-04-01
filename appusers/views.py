@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 from .models import Cliente
 
 
@@ -7,14 +7,32 @@ from .models import Cliente
 # Create your views here.
 def ViewHome(request):
     
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        
+        if name and start_date and end_date:
+            clientes = Cliente.objects.filter(name__icontains=name, date__range=[start_date, end_date]).exclude(status=True)
+        elif start_date and end_date:
+            clientes = Cliente.objects.filter(date__range=[start_date, end_date]).exclude(status=True)
+        else:
+            clientes = Cliente.objects.filter(name__icontains=name).exclude(status=True)
+    else:
+        clientes = Cliente.objects.all().exclude(status=True)
+    
 
-    clientes = Cliente.objects.all()
-    paginator = Paginator(clientes, 2)
+    paginator = Paginator(clientes, 5)
     page_number = request.GET.get('page')
-    clientes = paginator.page(page_number)
-    
-    
+    try:
+        clientes = paginator.page(page_number)
+    except PageNotAnInteger:
+        clientes = paginator.page(1)
+    except EmptyPage:
+        clientes = paginator.page(paginator.num_pages)
+
     return render(request, 'index.html', {'clientes':clientes})
+
 
 def ViewAddClient(request, name, phonenumber, price, description):
     newclient = Cliente.objects.create(name=name, phonenumber=phonenumber, price=price, description=description)
@@ -22,19 +40,27 @@ def ViewAddClient(request, name, phonenumber, price, description):
 
     return redirect('/')
 
-def ViewFilter(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        start_date = request.POST['start_date']
-        end_date = request.POST['end_date']
-        
-        if name and start_date and end_date:
-            clientes = Cliente.objects.filter(name__icontains=name,date__range=[start_date, end_date])
-        elif start_date and end_date:
-            clientes = Cliente.objects.filter(date__range=[start_date, end_date])
-        else:
-            clientes = Cliente.objects.filter(name__icontains=name)
-        
-        
-        return render(request, 'index.html', {'clientes':clientes})
-    return render(request, 'index.html')
+def ViewArchived(request):
+    clientes = Cliente.objects.filter(status=True)
+
+    paginator = Paginator(clientes, 5)
+    page_number = request.GET.get('page')
+    try:
+        clientes = paginator.page(page_number)
+    except PageNotAnInteger:
+        clientes = paginator.page(1)
+    except EmptyPage:
+        clientes = paginator.page(paginator.num_pages)
+    query = True
+    return render(request, 'index.html', {'clientes':clientes, 'query':query})
+
+def ViewServiceEdit(request, status, id):
+    service = Cliente.objects.get(id=id)
+    if status.lower() == 'false':
+        service.status = False
+    else:
+        service.status = True 
+    service.save()
+
+    url_anterior = request.META.get('HTTP_REFERER')
+    return redirect(url_anterior)

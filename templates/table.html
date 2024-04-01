@@ -1,20 +1,32 @@
 <table border="1">
     <thead>
             <tr>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Price</th>
-                <th>Date</th>                         
+                <th id="startd">Nome</th>
+                <th>Número</th>
+                <th>Preço</th>
+                <th id="starte">Data</th>
             </tr>
     </thead>
-    <tbody >
+    <tbody>
         {% for cliente in clientes %}
-            <tr>
-                <td>{{ cliente.name }}</td>
-                <td>{{ cliente.phonenumber }}</td>
-                <td>{{ cliente.price}}R$</td>
-                <td>{{ cliente.date }}</td>
+            {% if cliente.status == True %}
+            <tr onclick="Mudar('{{cliente.id}}','{{cliente.status}}')">
+                <td style="background-color: #2db56f; color: whitesmoke;" id="startd">{{ cliente.name }}</td>
+                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.phonenumber }}</td>
+                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.price}}R$</td>
+                <td style="background-color: #2db56f; color: whitesmoke;" id="starte">{{ cliente.date }}</td>
             </tr>
+            
+            {% else %}
+            
+            <tr onclick="Mudar('{{cliente.id}}', '{{cliente.status}}')">
+                <td id="startd">{{ cliente.name }}</td>
+                <td >{{ cliente.phonenumber }}</td>
+                <td >{{ cliente.price}}R$</td>
+                <td id="starte">{{ cliente.date }}</td>
+            </tr>
+            {% endif %}
         {% endfor %}
-    </tbody>   
+    </tbody> 
+     
 </table>

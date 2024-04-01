@@ -30,3 +30,43 @@ function AddMembro() {
         allowOutsideClick: () => !Swal.isLoading(),
     });
 }
+
+
+
+function Mudar(id, status) {
+    let checkbox;
+    let isChecked = 'False';
+    if (status == 'True') {
+        isChecked = 'checked';
+    }
+    Swal.fire({
+        title: "Editar Serviço",
+        html:
+           // `<input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off">
+            //<textarea id="descricao" class="swal2-textarea" placeholder="Descrição"></textarea>
+                
+            `<div class="checkbox-container">
+                <input id="feito" type="checkbox" class="swal2-checkbox" ${isChecked}>
+                <label for="feito" class="swal2-checkbox-label">Feito</label>
+            </div>`,
+
+        showCancelButton: true,
+        confirmButtonText: "Salvar",
+        cancelButtonText: "Cancelar",
+        allowOutsideClick: false,
+        preConfirm: () => {
+            
+            const checkbox = document.getElementById('feito').checked;
+            return checkbox.checked
+
+           
+        },
+        
+    }).then(result => {
+        const checkbox = document.getElementById('feito');
+        const isChecked = checkbox.checked; 
+        if (result.isConfirmed) {
+            window.location.href = `/serviceedit/${isChecked}/${id}`;
+        }
+    });
+}
