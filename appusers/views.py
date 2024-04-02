@@ -54,13 +54,23 @@ def ViewArchived(request):
     query = True
     return render(request, 'index.html', {'clientes':clientes, 'query':query})
 
-def ViewServiceEdit(request, status, id):
+def ViewServiceEdit(request, status, id,name, description):
     service = Cliente.objects.get(id=id)
     if status.lower() == 'false':
         service.status = False
     else:
-        service.status = True 
+        service.status = True
+    service.name = name
+    service.description = description 
     service.save()
 
     url_anterior = request.META.get('HTTP_REFERER')
     return redirect(url_anterior)
+
+def ViewClientDelete(request, id):
+    client = Cliente.objects.get(id=id)
+    client.delete()
+    url_anterior = request.META.get('HTTP_REFERER')
+    return redirect(url_anterior)
+
+    

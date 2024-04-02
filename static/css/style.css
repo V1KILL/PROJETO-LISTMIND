@@ -123,6 +123,7 @@ th {
 td {
     font-weight: 600;
     font-size: 1.1em;
+    cursor: pointer;
     color: white;
     background-color: #2db56f;  
 }
@@ -240,4 +241,13 @@ button {
     position: absolute;
     top: 2px;
     left: 6px;
+}
+
+.swal2-a {
+    padding: 8px;
+    color: white;
+    font-weight: 600;
+    background-color: #d33;
+    cursor: pointer;
+    text-decoration: none;
 }

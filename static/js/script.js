@@ -33,7 +33,7 @@ function AddMembro() {
 
 
 
-function Mudar(id, status) {
+function Mudar(id, status, name, description) {
     let checkbox;
     let isChecked = 'False';
     if (status == 'True') {
@@ -42,31 +42,44 @@ function Mudar(id, status) {
     Swal.fire({
         title: "Editar Serviço",
         html:
-           // `<input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off">
-            //<textarea id="descricao" class="swal2-textarea" placeholder="Descrição"></textarea>
+           `<input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off" value=${name}>
+            <textarea id="descricao" class="swal2-textarea" placeholder="Descrição" >${description}</textarea>
                 
-            `<div class="checkbox-container">
+            <div class="checkbox-container">
                 <input id="feito" type="checkbox" class="swal2-checkbox" ${isChecked}>
                 <label for="feito" class="swal2-checkbox-label">Feito</label>
+                <div>
+                    <a href="/clientdelete/${id}" id="excluir" class="swal2-a">Excluir Cliente</a>
+                </div>
             </div>`,
 
+        confirmButtonText: 'Editar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#19C37D',
+        cancelButtonColor: '#d33',
         showCancelButton: true,
-        confirmButtonText: "Salvar",
-        cancelButtonText: "Cancelar",
-        allowOutsideClick: false,
-        preConfirm: () => {
-            
-            const checkbox = document.getElementById('feito').checked;
-            return checkbox.checked
+       
 
-           
+        preConfirm: () => {
+            const nome = document.getElementById('nome').value;
+            const descricao = document.getElementById('descricao').value;
+            const checkbox = document.getElementById('feito').checked;
+
+            // Validação do input
+            
+            if (!nome.trim() || !descricao.trim()) {
+                Swal.showValidationMessage('O Título e a Descrição Não Podem Ser Vazios');
+                return false;
+              }
+
+            return { nome: nome, descricao: descricao, checkbox: checkbox };
         },
         
     }).then(result => {
-        const checkbox = document.getElementById('feito');
-        const isChecked = checkbox.checked; 
         if (result.isConfirmed) {
-            window.location.href = `/serviceedit/${isChecked}/${id}`;
+            const { nome, descricao, checkbox } = result.value;
+            window.location.href = `/serviceedit/${checkbox}/${id}/${nome}/${descricao}`;
         }
     });
+
 }
