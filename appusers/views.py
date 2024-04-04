@@ -74,4 +74,16 @@ def ViewClientDelete(request, id):
     return redirect(url_anterior)
 
 def ViewDashBoard(request):
-    return render(request, 'dashboard.html')
+    total_clientes = Cliente.objects.count()
+
+    total_clientes_feitos = Cliente.objects.filter(status=True).count()
+
+    dinheiro_arrecadado = Cliente.objects.filter(status=True)
+
+    soma = 0
+    for cliente in dinheiro_arrecadado:
+        soma += float(cliente.price) 
+    
+    porcentagem = total_clientes_feitos * 100 / total_clientes
+    
+    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'porcentagem':porcentagem})
