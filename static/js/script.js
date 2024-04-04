@@ -40,7 +40,7 @@ function Mudar(id, status, name, description) {
         isChecked = 'checked';
     }
     Swal.fire({
-        title: "Editar Serviço",
+        title: `${name}`,
         html:
            `<input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off" value=${name}>
             <textarea id="descricao" class="swal2-textarea" placeholder="Descrição" >${description}</textarea>

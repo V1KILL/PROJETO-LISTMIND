@@ -73,4 +73,5 @@ def ViewClientDelete(request, id):
     url_anterior = request.META.get('HTTP_REFERER')
     return redirect(url_anterior)
 
-    
+def ViewDashBoard(request):
+    return render(request, 'dashboard.html')

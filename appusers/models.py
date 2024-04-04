@@ -6,10 +6,13 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Cliente(models.Model):
     name = models.CharField(max_length=100)
     phonenumber = PhoneNumberField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=3)
     description = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
+
+    def formatted_date(self):
+        return self.date.strftime("%d, %B, %Y")
 
 class Serviços(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
