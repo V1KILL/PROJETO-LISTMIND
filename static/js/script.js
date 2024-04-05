@@ -13,6 +13,7 @@ function AddMembro() {
         cancelButtonText: 'Cancelar',
         confirmButtonColor: '#19C37D',
         cancelButtonColor: '#d33',
+        
         showLoaderOnConfirm: true,
         showCancelButton: true,
         preConfirm: () => {
