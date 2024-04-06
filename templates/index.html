@@ -3,36 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto - Cadastro de Usuários</title>
+    <title>{% block title %}Projeto - Cadastro de Usuários{% endblock %}</title>
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <div class="perfil">
-            {% include 'perfil.html '%}
-            <div class="features">
-                {% include 'functions.html' %} 
-            </div>
-        </div>
-        <div class="usersarea">
-            {% if not query %}
-                <h1 style="color: #2db56f;">Clientes</h1>
-                <form action="{% url 'home'  %}" method="POST">
-                    {% csrf_token %}
-                    
-                    <input type="text" name="name" id="" placeholder="Filtrar Por Nome">
-                    <input type="date" name="start_date" id="" placeholder="fef" value="fff">
-                    <input type="date" name="end_date" id="" >
-                    <button type="submit">Filtrar</button>
-                </form>
-            {% endif %}
+        {% include 'perfil.html' %}
+        {% block content %}
             
-            
-            {% include 'table.html' %}
-            {% include 'pagination.html' %}
-            
-        </div>
+        {% endblock %}
     </div>
     <script src="static/js/script.js"></script>
     <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>

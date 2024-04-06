@@ -1,0 +1,8 @@
+<h1 style="color: #2db56f;">Clientes</h1>
+<form action="{% url 'home'  %}" method="POST">
+    {% csrf_token %} 
+    <input type="text" name="name" id="" placeholder="Filtrar Por Nome">
+    <input type="date" name="start_date" id="" placeholder="fef" value="fff">
+    <input type="date" name="end_date" id="" >
+    <button type="submit">Filtrar</button>
+</form>

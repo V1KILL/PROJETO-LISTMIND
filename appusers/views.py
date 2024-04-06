@@ -31,7 +31,7 @@ def ViewHome(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {'clientes':clientes})
+    return render(request, 'index2.html', {'clientes':clientes})
 
 
 def ViewAddClient(request, name, phonenumber, price, description):
@@ -52,7 +52,7 @@ def ViewArchived(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
     query = True
-    return render(request, 'index.html', {'clientes':clientes, 'query':query})
+    return render(request, 'index2.html', {'clientes':clientes, 'query':query})
 
 def ViewServiceEdit(request, status, id,name, description):
     service = Cliente.objects.get(id=id)
