@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="../static/css/document.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VEGA INFORMÁTICA</h1>
+            <p>Rua Boa Vida, 61 Coroado II CEP 69080-070<p>
+            <p>Cel: 99187-1075 Manaus/AM<p>
+            <p>Email: edsonsouzamendonc@gmail.com</p> 
+        </header>
+        <section>
+            <p>Cliente: <span>{{cliente.name}}</span></p>
+            <p>Defeito Relatado: <span>{{cliente.description}}</span></p>
+            <p>Opção <span>() Compra</span><span>(x) Serviço</span><span>() Diagnóstico</span></p>
+            <p>Data Emissão: <span>{{cliente.predicted_date}}</span> Data de Entrega: <span>{{cliente.formatted_date}}</span></p>  
+            <p>Valor Previsto: <span>R${{cliente.predicted_date}}</span> Valor Pago: <span>R${{cliente.price}}</span></p>
+            <p>Serviço a Ser Executado: <span>{{cliente.execution}}</span></p>
+            <p>Peças Aplicadas: <span>{{cliente.executiontwo}}</span></p>
+
+        </section>
+        <footer>
+            <h4>Obs: Serviço com garantia de 90 dias a contar data/entrega</h4>
+            <div class="assinatura">
+                <h3>Edson Mendonça</h3>
+                <p>Tec. Responsável</p>
+            </div>
+            <p>Venda, conserto em computadores e acessórios e informática. Instalação de sistemas operacionais e programas utilitários</p>
+        </footer>
+    </div>
+    <script src="../project/script.js"></script>
+</body>
+</html>

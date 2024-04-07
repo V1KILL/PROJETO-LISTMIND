@@ -35,6 +35,7 @@ function AddMembro() {
 
 
 function Mudar(id, status, name, description) {
+    event.preventDefault();
     let checkbox;
     let isChecked = 'False';
     if (status == 'True') {
@@ -82,5 +83,8 @@ function Mudar(id, status, name, description) {
             window.location.href = `/serviceedit/${checkbox}/${id}/${nome}/${descricao}`;
         }
     });
+}
 
+function Document(id){
+    window.open(`/document/${id}`, '_blank');
 }

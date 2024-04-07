@@ -13,7 +13,7 @@
     <tbody>
         {% for cliente in clientes %}
             {% if cliente.status == True %}
-            <tr onclick="Mudar('{{cliente.id}}','{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')">
+            <tr oncontextmenu="Mudar(event, '{{cliente.id}}','{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')" onclick="Document(event,'{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')">
                 <td style="background-color: #2db56f; color: whitesmoke;" id="startd">{{ cliente.name }}</td>
                 <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.phonenumber }}</td>
                 <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.price}}R$</td>
@@ -22,7 +22,7 @@
             
             {% else %}
             
-            <tr onclick="Mudar('{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')">
+            <tr oncontextmenu="Mudar(event,'{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')" onclick="Document('{{cliente.id}}')">
                 <td id="startd">{{ cliente.name }}</td>
                 <td >{{ cliente.phonenumber }}</td>
                 <td >{{ cliente.price}}R$</td>

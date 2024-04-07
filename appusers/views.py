@@ -87,3 +87,7 @@ def ViewDashBoard(request):
     porcentagem = total_clientes_feitos * 100 / total_clientes
     
     return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'porcentagem':porcentagem})
+
+def ViewDocument(request, id):
+    cliente = Cliente.objects.get(id=id)
+    return render(request, 'document.html', {'cliente':cliente})
