@@ -4,9 +4,19 @@ function AddMembro() {
         title: '<p>Novo Cliente</p>',
         html: `
             <input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off">
-            <input id="telefone" class="swal2-input" placeholder="Telefone" type="tel" autocomplete="off">
-            <input id="preco" class="swal2-input" placeholder="Preço" type="number" autocomplete="off" required>
-            <textarea id="descricao" class="swal2-textarea" placeholder="Descrição"></textarea>
+            <textarea id="descricao" class="swal2-textarea" placeholder="Defeito Relatado"></textarea>
+            <div>
+                <select id="opcao" class="swal2-select">
+                    <option value="0">Serviço</option>
+                    <option value="1">Diagnóstico</option>
+                    <option value="2">Compra</option>
+                </select>
+            </div>
+            <input class="swal2-input" type="date" id="predicted-date" name="predicted-date"><br><br>
+            <input id="predicted-preco" class="swal2-input" placeholder="Valor Previsto" type="number" autocomplete="off" required>
+            <input id="preco" class="swal2-input" placeholder="Valor Pago" type="number" autocomplete="off" required>
+            <textarea id="servico" class="swal2-textarea" placeholder="Serviço a Ser Executado"></textarea>
+            <textarea id="peca" class="swal2-textarea" placeholder="Peças Aplicadas"></textarea>
         `,
         
         confirmButtonText: 'Adicionar Cliente',
@@ -18,15 +28,21 @@ function AddMembro() {
         showCancelButton: true,
         preConfirm: () => {
             const name = Swal.getPopup().querySelector('#nome').value;
-            const price = Swal.getPopup().querySelector('#preco').value;
-            const phonenumber = Swal.getPopup().querySelector('#telefone').value;
-            const description = Swal.getPopup().querySelector('#descricao').value;
+            const preco = Swal.getPopup().querySelector('#preco').value;
+            const defeito = Swal.getPopup().querySelector('#descricao').value;
+            const opcao = Swal.getPopup().querySelector('#opcao').value;
+            const predictedDate = Swal.getPopup().querySelector('#predicted-date').value;
+            const predictedPreco = Swal.getPopup().querySelector('#predicted-preco').value;
+            const servico = Swal.getPopup().querySelector('#servico').value;
+            const peca = Swal.getPopup().querySelector('#peca').value;
 
-            if (!name.trim() || !price.trim() || !phonenumber.trim() || !description.trim()) {
+            if (!name || !preco || !defeito || !opcao || !predictedDate || !predictedPreco || !servico || !peca) {
                 Swal.showValidationMessage('Todos os campos são obrigatórios');
                 return false;
             }
-            window.location.href = `/addclient/${name}/${phonenumber}/${price}/${description}`;
+
+            
+            window.location.href = `/addclient/${name}/${defeito}/${opcao}/${predictedDate}/${predictedPreco}/${preco}/${servico}/${peca}`;
         },
         allowOutsideClick: () => !Swal.isLoading(),
     });
@@ -35,7 +51,7 @@ function AddMembro() {
 
 
 function Mudar(id, status, name, description) {
-    event.preventDefault();
+    
     let checkbox;
     let isChecked = 'False';
     if (status == 'True') {

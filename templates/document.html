@@ -1,3 +1,4 @@
+{% load l10n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +18,13 @@
         <section>
             <p>Cliente: <span>{{cliente.name}}</span></p>
             <p>Defeito Relatado: <span>{{cliente.description}}</span></p>
-            <p>Opção <span>() Compra</span><span>(x) Serviço</span><span>() Diagnóstico</span></p>
-            <p>Data Emissão: <span>{{cliente.predicted_date}}</span> Data de Entrega: <span>{{cliente.formatted_date}}</span></p>  
-            <p>Valor Previsto: <span>R${{cliente.predicted_date}}</span> Valor Pago: <span>R${{cliente.price}}</span></p>
+            <p>Opção: <span>{{cliente.get_opcao_display}}</span></p>
+            <p>Data Emissão: <span>{{cliente.date}}</span> Data de Entrega: <span>{{cliente.predicted_date}}</span></p>  
+            <p>Valor Previsto:
+                <span>{% localize on %}R${{cliente.predicted_price}}{% endlocalize %}</span>
+                Valor Pago: <span>{% localize on %}
+                R${{cliente.price}}{% endlocalize %}</span>
+            </p>
             <p>Serviço a Ser Executado: <span>{{cliente.execution}}</span></p>
             <p>Peças Aplicadas: <span>{{cliente.executiontwo}}</span></p>
 

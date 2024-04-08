@@ -34,8 +34,8 @@ def ViewHome(request):
     return render(request, 'index2.html', {'clientes':clientes})
 
 
-def ViewAddClient(request, name, phonenumber, price, description):
-    newclient = Cliente.objects.create(name=name, phonenumber=phonenumber, price=price, description=description)
+def ViewAddClient(request, name, defeito, opcao, predictedDate, predictedPreco, preco, servico, peca):
+    newclient = Cliente.objects.create(name=name, description=defeito, opcao=opcao, predicted_date = predictedDate, predicted_price = predictedPreco, price=preco, execution= servico, executiontwo= peca)
     newclient.save()
 
     return redirect('/')
