@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 from .models import Cliente
+import datetime
 
 
 
@@ -22,7 +23,7 @@ def ViewHome(request):
         clientes = Cliente.objects.all().exclude(status=True)
     
 
-    paginator = Paginator(clientes, 5)
+    paginator = Paginator(clientes, 1)
     page_number = request.GET.get('page')
     try:
         clientes = paginator.page(page_number)
@@ -86,7 +87,9 @@ def ViewDashBoard(request):
     
     porcentagem = total_clientes_feitos * 100 / total_clientes
     
-    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'porcentagem':porcentagem})
+    clientes_com_garantia = Cliente.objects.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
+
+    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'porcentagem':porcentagem, 'clientes_com_garantia':clientes_com_garantia})
 
 def ViewDocument(request, id):
     cliente = Cliente.objects.get(id=id)

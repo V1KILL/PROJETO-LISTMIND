@@ -9,9 +9,9 @@
 
 div.container {
     display: flex;
+    justify-content: center;
     width: 100%;
     height: 100vh;
-
 }
 
 div.perfil {
@@ -22,6 +22,7 @@ div.perfil {
     padding-top: 40px;
     width: 100%;
     max-width: 200px;
+    height: 100vh;
     background-color: #2db56f;
 }
 
@@ -97,13 +98,12 @@ div.usersarea {
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 10px;
     background-color: #e7eef7;
-    
 }
 
 table {
-    width: 80%;
+    padding: 0px 20px;
+    width: 100%;
     text-align: left;
     border: none;
     border-collapse: separate;
@@ -167,34 +167,66 @@ td#starte, th#starte {
 
 form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
+    flex-direction: column;
+    padding: 0px 20px;
+    width: 100%;
     gap: 20px;
 }
 
-input {
+form div.date {
+    display: flex;
+    gap: 10px;
     background-color: transparent;
+}
+
+form div.date input {
+    width: 50%;
+}
+
+form div.search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    color: white;
+    background-color: #2db56f;
+    border-radius: 8px;
+}
+
+form div button#search {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: white;
     border: none;
+    
+}
+
+input {
     outline: none;
-    border: 3px solid #2db56f;
-    padding: 6px;
-    border-radius: 12px;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+    background-color: #2db56f;
 }
 
 input::placeholder{
-    color: #2db56f;
-}
-
-button {
-    border: none;
-    outline: none;
-    background-color: #2db56f;
-    padding: 11px;
     color: white;
     font-weight: 600;
-    cursor: pointer;
-    border-radius: 12px;
+}
+
+input[type='text']{
+    width: 100%;
+}
+
+button[type='submit'] {
+    outline: none;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+    background-color: #2db56f;
 }
 
 .checkbox-container {
@@ -268,4 +300,56 @@ select {
 .input-date-sweet {
     border: 1px solid black;
     border-radius: 0px;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    gap: 20px;
+    background-color:  #e7eef7;
+}
+
+.dashboard-functions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.dashboard-function {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-image: linear-gradient(to right,  #2db56f, #36d985);
+    padding: 20px 40px 20px 20px;
+    border-radius: 20px;
+    min-width: 30%;
+}
+
+.dashboard-function p {
+    font-size: 1.3em;
+    color: white;
+    font-weight: 600;
+}
+
+.dashboard-function-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.dashboard-function-image i {
+    font-size: 2em;
+    color: white;
+}
+
+.dashboard-function-image p {
+    font-size: 2em;
+    color: white;
 }
