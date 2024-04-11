@@ -83,7 +83,7 @@ function Mudar(id, status, name, description) {
             const descricao = document.getElementById('descricao').value;
             const checkbox = document.getElementById('feito').checked;
 
-            // Validação do input
+  
             
             if (!nome.trim() || !descricao.trim()) {
                 Swal.showValidationMessage('O Título e a Descrição Não Podem Ser Vazios');
@@ -104,3 +104,38 @@ function Mudar(id, status, name, description) {
 function Document(id){
     window.open(`/document/${id}`, '_blank');
 }
+
+var elementoFaturamento = document.getElementById('myChart');
+
+var faturamentoMensalString = elementoFaturamento.dataset.faturamento;
+var faturamentoMensal = JSON.parse(faturamentoMensalString);
+
+
+var data = {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    datasets: [{
+        label: 'Faturamento Mensagel',
+        data: faturamentoMensal,
+        backgroundColor: 'rgb(1,208,119, 0.2)',
+        borderColor:'#01D077',
+        borderWidth: 1
+    }]
+};
+
+
+var options = {
+    scales: {
+        y: {
+            beginAtZero: true
+        }
+    }
+};
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options,
+    
+});

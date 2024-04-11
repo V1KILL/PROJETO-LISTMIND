@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 from .models import Cliente
 import datetime
-
+from plotly.offline import plot
+import plotly.graph_objs as go
 
 
 # Create your views here.
@@ -85,11 +86,13 @@ def ViewDashBoard(request):
     for cliente in dinheiro_arrecadado:
         soma += float(cliente.price) 
     
-    porcentagem = total_clientes_feitos * 100 / total_clientes
+    
     
     clientes_com_garantia = Cliente.objects.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
 
-    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'porcentagem':porcentagem, 'clientes_com_garantia':clientes_com_garantia})
+    
+    faturamento_mensal = [1,2,3,4,5,6,7, 8, 8, 10, 11, 12]
+    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'clientes_com_garantia':clientes_com_garantia,  'faturamento_mensal': faturamento_mensal})
 
 def ViewDocument(request, id):
     cliente = Cliente.objects.get(id=id)
