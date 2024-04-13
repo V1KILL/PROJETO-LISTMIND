@@ -1,40 +1,35 @@
 {% if query %}
 <h1 style="color: #2db56f; padding: 20px;">Serviços Feitos</h1>
 {% endif %}
-<table border="1">
+<table>
     <thead>
-            <tr>
-                <th id="startd">Nome</th>
-                <th>Defeito</th>
-                <th>Execução</th>
-                <th>Preço</th>
-                <th id="starte">Data(Criação)</th>
-                <th id="starte">Data(Previsão)</th>
-            </tr>
+        <tr>
+            <th id="startd">Nome</th>
+            <th>Defeito</th>
+            <th>Preço</th>
+            <th>Opção</th>
+            <th id="starte">Data(Previsão)</th>
+        </tr>
     </thead>
     <tbody>
-        {% for cliente in clientes %}
-            {% if cliente.status == True %}
-            <tr oncontextmenu="Mudar('{{cliente.id}}','{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')" onclick="Document('{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')">
-                <td style="background-color: #2db56f; color: whitesmoke;" id="startd">{{ cliente.name }}</td>
-                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.description }}</td>
-                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.execution}}</td>
-                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.price}}R$</td>
-                <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.date}}</td>
-                <td style="background-color: #2db56f; color: whitesmoke;" id="starte">{{ cliente.predicted_date }}</td>
-            </tr>
-            
-            {% else %}
-            
-            <tr oncontextmenu="Mudar('{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.description}}')" onclick="Document('{{cliente.id}}')">
+    {% for cliente in clientes %}
+        {% if cliente.status == True %}
+            <tr oncontextmenu="Mudar('{{cliente.id}}','{{cliente.status}}', '{{cliente.name}}', '{{cliente.defect}}')" onclick="Document('{{cliente.id}}')">
                 <td id="startd">{{ cliente.name }}</td>
-                <td >{{ cliente.description }}</td>
-                <td >{{ cliente.execution }}</td>
-                <td >{{ cliente.price}}R$</td>
-                <td>{{ cliente.date }}</td>
+                <td>{{ cliente.defect }}</td>
+                <td>{{ cliente.price}}R$</td>
+                <td>{{ cliente.date}}</td>
                 <td id="starte">{{ cliente.predicted_date }}</td>
             </tr>
-            {% endif %}
-        {% endfor %}
+        {% else %}
+            <tr oncontextmenu="Mudar('{{cliente.id}}', '{{cliente.status}}', '{{cliente.name}}', '{{cliente.defect}}')" onclick="Document('{{cliente.id}}')">
+                <td id="startd">{{ cliente.name }}</td>
+                <td>{{ cliente.defect }}</td>
+                <td>{{ cliente.price}}R$</td> 
+                <td>{{ cliente.get_opcao_display }}</td>
+                <td id="starte">{{ cliente.predicted_date }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
     </tbody> 
 </table>

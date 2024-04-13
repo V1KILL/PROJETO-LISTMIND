@@ -6,7 +6,7 @@
         <div class="dashboard-function">
             <div class="dashboard-function-image">
                 <i class="fa-solid fa-sack-dollar"></i>
-                <p>R${{soma}}</p>
+                <p>R${{money}}</p>
             </div>
             <div>
                 <p>Faturamento</p>
@@ -15,16 +15,16 @@
         <div class="dashboard-function">
             <div class="dashboard-function-image">
                 <i class="fa-solid fa-users"></i>
-                <p>{{total_clientes}}</p>
+                <p>{{clients.count}}</p>
             </div>
             <div>
-                <p>Serviços Totais </p>
+                <p>Serviços Totais</p>
             </div>
         </div>
         <div class="dashboard-function">
             <div class="dashboard-function-image">
                 <i class="fa-solid fa-thumbtack"></i>
-                <p>{{total_clientes_feitos}}</p>
+                <p>{{done_clients.count}}</p>
             </div>
             <div>
                 <p>Serviços Feitos</p>
@@ -33,39 +33,13 @@
         <div class="dashboard-function">
             <div class="dashboard-function-image">
                 <i class="fa-solid fa-user-shield"></i>
-                <p>{{clientes_com_garantia.count}}</p>
+                <p>{{pendent_clients.count}}</p>
             </div>
             <div>
                 <p>Clientes em Garantia</p>
             </div>
         </div>
     </div>
-    <canvas id="myChart" data-faturamento='{{ faturamento_mensal }}'></canvas>
-    <h1 style="color: #2db56f;" >Clientes em Garantia</h1>
-    <table border="1">
-        <thead>
-                <tr>
-                    <th id="startd">Nome</th>
-                    <th>Defeito</th>
-                    <th>Execução</th>
-                    <th>Preço</th>
-                    <th id="starte">Data(Criação)</th>
-                    <th id="starte">Data(Previsão)</th>
-                </tr>
-        </thead>
-        <tbody>
-            {% for cliente in clientes_com_garantia %}
-                <tr>
-                    <td style="background-color: #2db56f; color: whitesmoke;" id="startd">{{ cliente.name }}</td>
-                    <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.description }}</td>
-                    <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.execution}}</td>
-                    <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.price}}R$</td>
-                    <td style="background-color: #2db56f; color: whitesmoke;">{{ cliente.date}}</td>
-                    <td style="background-color: #2db56f; color: whitesmoke;" id="starte">{{ cliente.predicted_date }}</td>
-                </tr>
-            {% endfor %}
-        </tbody> 
-    </table>
+    <canvas id="myChart" data-faturamento='{{ faturamento }}'></canvas>
 </div>
-
 {% endblock %}

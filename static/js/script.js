@@ -3,20 +3,20 @@ function AddMembro() {
     Swal.fire({
         title: '<p>Novo Cliente</p>',
         html: `
-            <input id="nome" class="swal2-input" placeholder="Nome" autocomplete="off">
-            <textarea id="descricao" class="swal2-textarea" placeholder="Defeito Relatado"></textarea>
+            <input id="name" class="swal2-input" placeholder="Nome" autocomplete="off">
+            <textarea id="defect" class="swal2-textarea" placeholder="Defeito Relatado"></textarea>
             <div>
-                <select id="opcao" class="swal2-select">
+                <select id="option" class="swal2-select">
                     <option value="0">Serviço</option>
                     <option value="1">Diagnóstico</option>
                     <option value="2">Compra</option>
                 </select>
             </div>
             <input class="swal2-input" type="date" id="predicted-date" name="predicted-date"><br><br>
-            <input id="predicted-preco" class="swal2-input" placeholder="Valor Previsto" type="number" autocomplete="off" required>
-            <input id="preco" class="swal2-input" placeholder="Valor Pago" type="number" autocomplete="off" required>
-            <textarea id="servico" class="swal2-textarea" placeholder="Serviço a Ser Executado"></textarea>
-            <textarea id="peca" class="swal2-textarea" placeholder="Peças Aplicadas"></textarea>
+            <input id="predicted-price" class="swal2-input" placeholder="Valor Previsto" type="number" autocomplete="off" required>
+            <input id="price" class="swal2-input" placeholder="Valor Pago" type="number" autocomplete="off" required>
+            <textarea id="service" class="swal2-textarea" placeholder="Serviço a Ser Executado"></textarea>
+            <textarea id="part" class="swal2-textarea" placeholder="Peças Aplicadas"></textarea>
         `,
         
         confirmButtonText: 'Adicionar Cliente',
@@ -27,22 +27,22 @@ function AddMembro() {
         showLoaderOnConfirm: true,
         showCancelButton: true,
         preConfirm: () => {
-            const name = Swal.getPopup().querySelector('#nome').value;
-            const preco = Swal.getPopup().querySelector('#preco').value;
-            const defeito = Swal.getPopup().querySelector('#descricao').value;
-            const opcao = Swal.getPopup().querySelector('#opcao').value;
-            const predictedDate = Swal.getPopup().querySelector('#predicted-date').value;
-            const predictedPreco = Swal.getPopup().querySelector('#predicted-preco').value;
-            const servico = Swal.getPopup().querySelector('#servico').value;
-            const peca = Swal.getPopup().querySelector('#peca').value;
+            const name = Swal.getPopup().querySelector('#name').value;
+            const price = Swal.getPopup().querySelector('#price').value;
+            const defect = Swal.getPopup().querySelector('#defect').value;
+            const option = Swal.getPopup().querySelector('#option').value;
+            const predicted_date = Swal.getPopup().querySelector('#predicted-date').value;
+            const predicted_price = Swal.getPopup().querySelector('#predicted-price').value;
+            const service = Swal.getPopup().querySelector('#service').value;
+            const part = Swal.getPopup().querySelector('#part').value;
 
-            if (!name || !preco || !defeito || !opcao || !predictedDate || !predictedPreco || !servico || !peca) {
+            if (!name || !price || !defect || !option || !predicted_date || !predicted_price || !service || !part) {
                 Swal.showValidationMessage('Todos os campos são obrigatórios');
                 return false;
             }
 
             
-            window.location.href = `/addclient/${name}/${defeito}/${opcao}/${predictedDate}/${predictedPreco}/${preco}/${servico}/${peca}`;
+            window.location.href = `/addclient/${name}/${defect}/${option}/${predicted_date}/${predicted_price}/${price}/${service}/${part}`;
         },
         allowOutsideClick: () => !Swal.isLoading(),
     });

@@ -5,21 +5,21 @@ from django.urls import reverse
 
 class Cliente(models.Model):
     
-    escolhas = {
+    choices = {
         ('0', 'Serviço'),
         ('1', 'Diagnóstico'),
         ('2', 'Compra'),
     }
 
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    opcao = models.CharField(max_length=11, choices=escolhas, default='0')
+    defect = models.TextField()
+    option = models.CharField(max_length=11, choices=choices, default='0')
     date = models.DateField(auto_now_add=True)
     predicted_date = models.DateField(default='2006-02-22')
     predicted_price = models.DecimalField(max_digits=10, decimal_places=3)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    execution = models.TextField()
-    executiontwo = models.TextField()
+    service = models.TextField()
+    part = models.TextField()
     status = models.BooleanField(default=False)
     
     def get_absolute_url(self):

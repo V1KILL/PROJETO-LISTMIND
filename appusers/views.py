@@ -5,7 +5,7 @@ import datetime
 from plotly.offline import plot
 import plotly.graph_objs as go
 
-
+from django.db.models import Sum
 # Create your views here.
 def ViewHome(request):
     
@@ -24,7 +24,7 @@ def ViewHome(request):
         clientes = Cliente.objects.all().exclude(status=True)
     
 
-    paginator = Paginator(clientes, 1)
+    paginator = Paginator(clientes, 5)
     page_number = request.GET.get('page')
     try:
         clientes = paginator.page(page_number)
@@ -36,8 +36,8 @@ def ViewHome(request):
     return render(request, 'index2.html', {'clientes':clientes})
 
 
-def ViewAddClient(request, name, defeito, opcao, predictedDate, predictedPreco, preco, servico, peca):
-    newclient = Cliente.objects.create(name=name, description=defeito, opcao=opcao, predicted_date = predictedDate, predicted_price = predictedPreco, price=preco, execution= servico, executiontwo= peca)
+def ViewAddClient(request, name, defect, option, predicted_date, predicted_price, price, service, part):
+    newclient = Cliente.objects.create(name=name, defect=defect, option=option, predicted_date = predicted_date, predicted_price = predicted_price, price=price, service= service, part= part)
     newclient.save()
 
     return redirect('/')
@@ -63,7 +63,7 @@ def ViewServiceEdit(request, status, id,name, description):
     else:
         service.status = True
     service.name = name
-    service.description = description 
+    service.defect = description 
     service.save()
 
     url_anterior = request.META.get('HTTP_REFERER')
@@ -76,24 +76,39 @@ def ViewClientDelete(request, id):
     return redirect(url_anterior)
 
 def ViewDashBoard(request):
-    total_clientes = Cliente.objects.count()
+    clients = Cliente.objects.all()
+    done_clients = Cliente.objects.filter(status=True)
 
-    total_clientes_feitos = Cliente.objects.filter(status=True).count()
+    money = 0
+    for cliente in done_clients:
+        money += float(cliente.price) 
+    
+    pendents_clients= Cliente.objects.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
+    meses = Cliente.objects.values('date__month').annotate(total_arrecadado=Sum('price')).filter(status=True)
 
-    dinheiro_arrecadado = Cliente.objects.filter(status=True)
+    faturamento = [0] * 12
 
-    soma = 0
-    for cliente in dinheiro_arrecadado:
-        soma += float(cliente.price) 
-    
-    
-    
-    clientes_com_garantia = Cliente.objects.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
+    for mes in meses:
+        indice = mes['date__month'] - 1  # Subtrai 1 para ajustar o índice da lista
+        faturamento[indice] = int(mes['total_arrecadado'])
 
     
-    faturamento_mensal = [1,2,3,4,5,6,7, 8, 8, 10, 11, 12]
-    return render(request, 'dashboard.html', {'total_clientes':total_clientes, 'total_clientes_feitos':total_clientes_feitos, 'soma':soma, 'clientes_com_garantia':clientes_com_garantia,  'faturamento_mensal': faturamento_mensal})
+    return render(request, 'dashboard.html', {'clients':clients, 'done_clients':done_clients, 'money':money,'pendent_clients':pendents_clients, 'faturamento':faturamento})
+
 
 def ViewDocument(request, id):
     cliente = Cliente.objects.get(id=id)
     return render(request, 'document.html', {'cliente':cliente})
+
+def ViewGarantidos(request):
+    clientes = Cliente.objects.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
+    
+    paginator = Paginator(clientes, 5)
+    page_number = request.GET.get('page')
+    try:
+        clientes = paginator.page(page_number)
+    except PageNotAnInteger:
+        clientes = paginator.page(1)
+    except EmptyPage:
+        clientes = paginator.page(paginator.num_pages)
+    return render(request, 'garantia.html', {'clientes':clientes})

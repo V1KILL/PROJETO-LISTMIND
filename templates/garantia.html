@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div style="display: flex;
+ justify-content: center;
+ align-items: center; flex-direction: column; width: 100%;">
+    <h1 style="color: #01D077;">Clientes em Garantia</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th id="startd">Nome</th>
+                <th>Defeito</th>
+                <th>Execução</th>
+                <th>Preço</th>
+                <th>Data(Criação)</th>
+                <th id="starte">Data(Previsão)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td id="startd">{{ cliente.name }}</td>
+                    <td>{{ cliente.defect }}</td>
+                    <td>{{ cliente.service}}</td>
+                    <td>{{ cliente.price}}R$</td>
+                    <td>{{ cliente.date}}</td>
+                    <td id="starte">{{ cliente.predicted_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+    {% include 'pagination.html' %}
+</div>
+{% endblock %}
