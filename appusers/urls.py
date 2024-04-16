@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import ViewHome, ViewAddClient, ViewArchived, ViewServiceEdit, ViewClientDelete, ViewDashBoard, ViewDocument, ViewGarantidos
+from .views import ViewHome, ViewAddClient, ViewArchived, ViewServiceEdit, ViewClientDelete, ViewDashBoard, ViewDocument, ViewGarantidos, ViewLogout, ViewSignin, ViewSignUp
 urlpatterns = [
     path('', ViewHome, name="home"),
+    path('signup', ViewSignUp, name='signup'),
+    path('signin', ViewSignin, name='signin'),
+    path('logout', ViewLogout, name='logout'),
     path('addclient/<str:name>/<str:defect>/<str:option>/<str:predicted_date>/<int:predicted_price>/<int:price>/<str:service>/<str:part>', ViewAddClient, name="addclient"),
     path('archived', ViewArchived,name='archived'),
     path('serviceedit/<str:status>/<int:id>/<str:name>/<str:description>', ViewServiceEdit,name='serviceedit'),

@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 # Create your models here.
 
 class Cliente(models.Model):
@@ -10,7 +11,7 @@ class Cliente(models.Model):
         ('1', 'Diagnóstico'),
         ('2', 'Compra'),
     }
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     defect = models.TextField()
     option = models.CharField(max_length=11, choices=choices, default='0')
@@ -24,3 +25,6 @@ class Cliente(models.Model):
     
     def get_absolute_url(self):
         return [self.id, self.status, self.name, self.description]
+
+    def __str__(self):
+        return f"Serviço {self.name} de {self.user}"

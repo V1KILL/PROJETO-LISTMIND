@@ -10,23 +10,23 @@
 <body>
     <div class="container">
         <header>
-            <h1>VEGA INFORMÁTICA</h1>
-            <p>Rua Boa Vida, 61 Coroado II CEP 69080-070<p>
-            <p>Cel: 99187-1075 Manaus/AM<p>
-            <p>Email: edsonsouzamendonc@gmail.com</p> 
+            <h1 style="text-align: center;">VEGA INFORMÁTICA</h1>
+            <p style="text-align: center;">Rua Boa Vida, 61 Coroado II CEP 69080-070<p>
+            <p style="text-align: center;">Cel: 99187-1075 Manaus/AM<p>
+            <p style="text-align: center;">Email: edsonsouzamendonc@gmail.com</p> 
         </header>
         <section>
-            <p>Cliente: <span>{{cliente.name}}</span></p>
-            <p>Defeito Relatado: <span>{{cliente.description}}</span></p>
-            <p>Opção: <span>{{cliente.get_opcao_display}}</span></p>
-            <p>Data Emissão: <span>{{cliente.date}}</span> Data de Entrega: <span>{{cliente.predicted_date}}</span></p>  
-            <p>Valor Previsto:
+            <p style="display: block;">Cliente: <span>{{cliente.name}}</span></p>
+            <p style="display: block;">Defeito Relatado: <span>{{cliente.defect}}</span></p>
+            <p style="display: block;">Opção: <span>{{cliente.get_option_display}}</span></p>
+            <p style="display: block;">Data Emissão: <span>{{cliente.date}}</span> Data de Entrega: <span>{{cliente.predicted_date}}</span></p>  
+            <p style="display: block;">Valor Previsto:
                 <span>{% localize on %}R${{cliente.predicted_price}}{% endlocalize %}</span>
                 Valor Pago: <span>{% localize on %}
                 R${{cliente.price}}{% endlocalize %}</span>
             </p>
-            <p>Serviço a Ser Executado: <span>{{cliente.execution}}</span></p>
-            <p>Peças Aplicadas: <span>{{cliente.executiontwo}}</span></p>
+            <p style="display: block;">Serviço a Ser Executado: <span>{{cliente.service}}</span></p>
+            <p style="display: block;">Peças Aplicadas: <span>{{cliente.part}}</span></p>
 
         </section>
         <footer>
