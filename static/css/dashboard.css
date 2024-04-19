@@ -1,0 +1,57 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    gap: 20px;
+    background-color:  #e7eef7;
+}
+
+.dashboard-functions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.dashboard-function {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-image: linear-gradient(to right,  #2db56f, #36d985);
+    padding: 20px 40px 20px 20px;
+    border-radius: 20px;
+    min-width: 30%;
+}
+
+.dashboard-function p {
+    font-size: 1.3em;
+    color: white;
+    font-weight: 600;
+}
+
+.dashboard-function-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.dashboard-function-image i {
+    font-size: 2em;
+    color: white;
+}
+
+.dashboard-function-image p {
+    font-size: 2em;
+    color: white;
+}
+
+#myChart {
+    padding: 0px 20px;
+    max-width: 100%;
+    max-height: 400px;
+}

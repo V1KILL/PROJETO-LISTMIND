@@ -1,0 +1,29 @@
+
+.swal2-confirm,
+.swal2-cancel {
+    transition: none !important;
+    animation: none !important;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+.pagination a, .pagination span {
+    padding: 10px 14px;
+    border-radius: 36px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pagination span {
+    background-color: #2d2e39;
+    color: white;
+}
+
+.pagination a {
+   background-color:white;
+   color: #2d2e39;
+}

@@ -1,18 +1,19 @@
 {% extends 'index.html' %}
 
+{% block title %} Clientes em Garantia - ListMind {% endblock %}
+
 {% block content %}
 <div style="display: flex;
  justify-content: center;
- align-items: center; flex-direction: column; width: 100%;">
-    <h1 style="color: #01D077;">Clientes em Garantia</h1>
+ align-items: center; flex-direction: column; width: 100%;height: 100%;">
+    <h1 id="titles">Clientes em Garantia</h1>
     <table border="1">
         <thead>
             <tr>
                 <th id="startd">Nome</th>
                 <th>Defeito</th>
-                <th>Execução</th>
                 <th>Preço</th>
-                <th>Data(Criação)</th>
+                <th>Opção</th>
                 <th id="starte">Data(Previsão)</th>
             </tr>
         </thead>
@@ -21,9 +22,8 @@
                 <tr>
                     <td id="startd">{{ cliente.name }}</td>
                     <td>{{ cliente.defect }}</td>
-                    <td>{{ cliente.service}}</td>
-                    <td>{{ cliente.price}}R$</td>
-                    <td>{{ cliente.date}}</td>
+                    <td>R${{ cliente.price}}</td>
+                    <td>{{ cliente.get_option_display}}</td>
                     <td id="starte">{{ cliente.predicted_date }}</td>
                 </tr>
             {% endfor %}

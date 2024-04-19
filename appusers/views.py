@@ -18,16 +18,19 @@ def ViewSignUp(request):
         username = request.POST['username']
         password = request.POST['password']
         password2 = request.POST['password2']
-
         if password == password2:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Nome Existente')
-                return redirect('signup')
+            if username.isspace():
+                messages.info(request, 'Nome Vazio')
+                return redirect('register')
             else:
-                user = User.objects.create_user(username=username, password=password)
-                user.save()
-                messages.info(request, 'Conta Criada com Sucesso')
-                return redirect('signin')
+                if User.objects.filter(username=username).exists():
+                    messages.info(request, 'Nome Existente')
+                    return redirect('register')
+                else:
+                    user = User.objects.create_user(username=username, password=password)
+                    user.save()
+                    messages.info(request, 'Conta Criada com Sucesso')
+                    return redirect('signup')
         else:
             messages.info(request, 'Senhas não coincidem')
             return redirect('signup')
@@ -40,24 +43,23 @@ def ViewSignin(request):
         username = request.POST['username']
         password = request.POST['password']
         user = User.objects.filter(username=username).first()
-
         if user is not None and user.check_password(password):
             auth.login(request, user)
-            return redirect('/')
+            return redirect('home')
         elif user is not None and not user.check_password(password):
-            messages.info(request, 'Senha incorreta')
+            messages.info(request, 'Senha Incorreta')
             return redirect('signin')
         else:
-            messages.info(request, 'Usuário Não existe')
+            messages.info(request, 'Usuário Não Existe')
             return redirect('signin')
-    else:
-        return render(request, 'signin.html')
+    return render(request, 'signin.html')
     
 @login_required(login_url='/signin')
 def ViewLogout(request):
     logout(request)
     return redirect('signin')
 
+@login_required(login_url='/signin')
 def ViewHome(request):
     
     if request.method == 'POST':
@@ -75,7 +77,7 @@ def ViewHome(request):
         clientes = Cliente.objects.filter(user=request.user).exclude(status=True)
     
 
-    paginator = Paginator(clientes, 5)
+    paginator = Paginator(clientes, 1)
     page_number = request.GET.get('page')
     try:
         clientes = paginator.page(page_number)
@@ -86,13 +88,14 @@ def ViewHome(request):
 
     return render(request, 'index2.html', {'clientes':clientes})
 
-
+@login_required(login_url='/signin')
 def ViewAddClient(request, name, defect, option, predicted_date, predicted_price, price, service, part):
     newclient = Cliente.objects.create(name=name, defect=defect, option=option, predicted_date = predicted_date, predicted_price = predicted_price, price=price, service= service, part= part, user=request.user)
     newclient.save()
 
     return redirect('/')
 
+@login_required(login_url='/signin')
 def ViewArchived(request):
     clientes = Cliente.objects.filter(status=True,user=request.user)
 
@@ -107,6 +110,7 @@ def ViewArchived(request):
     query = True
     return render(request, 'index2.html', {'clientes':clientes, 'query':query})
 
+@login_required(login_url='/signin')
 def ViewServiceEdit(request, status, id,name, description):
     service = Cliente.objects.get(id=id,user=request.user)
     if status.lower() == 'false':
@@ -120,12 +124,14 @@ def ViewServiceEdit(request, status, id,name, description):
     url_anterior = request.META.get('HTTP_REFERER')
     return redirect(url_anterior)
 
+@login_required(login_url='/signin')
 def ViewClientDelete(request, id):
     client = Cliente.objects.get(id=id,user=request.user)
     client.delete()
     url_anterior = request.META.get('HTTP_REFERER')
     return redirect(url_anterior)
 
+@login_required(login_url='/signin')
 def ViewDashBoard(request):
     clients = Cliente.objects.filter(user=request.user)
     done_clients = clients.filter(status=True)
@@ -147,7 +153,7 @@ def ViewDashBoard(request):
     
     return render(request, 'dashboard.html', {'clients':clients, 'done_clients':done_clients, 'money':money,'pendent_clients':pendents_clients, 'faturamento':faturamento})
 
-
+@login_required(login_url='/signin')
 def ViewDocument(request, id):  
     cliente = Cliente.objects.get(id=id, user=request.user)
     html = render_to_string('document.html', {'cliente': cliente})
@@ -159,10 +165,10 @@ def ViewDocument(request, id):
 
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="documento.pdf"'
+    response['Content-Disposition'] = f'attachment; filename={f'{cliente.name}.pdf'}'
     return response
 
-
+@login_required(login_url='/signin')
 def ViewGarantidos(request):
     clientes = Cliente.objects.filter(status=True, user=request.user, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
     

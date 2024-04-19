@@ -1,0 +1,72 @@
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+}
+
+.swal2-checkbox {
+    position: relative;
+    cursor: pointer;
+}
+.swal2-checkbox:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color:#e9e9e9;
+}
+.swal2-checkbox:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color:#1E80EF;
+}
+.swal2-checkbox:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
+
+.swal2-a {
+    padding: 8px;
+    color: white;
+    font-weight: 600;
+    background-color: #d33;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+}
+
+select {
+    padding: 8px;
+}
+
+.input-date-sweet {
+    border: 1px solid black;
+    border-radius: 0px;
+}

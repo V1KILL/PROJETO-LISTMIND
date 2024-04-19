@@ -23,7 +23,7 @@ function AddMembro() {
         cancelButtonText: 'Cancelar',
         confirmButtonColor: '#19C37D',
         cancelButtonColor: '#d33',
-        
+        backgroundColor: '#343541',
         showLoaderOnConfirm: true,
         showCancelButton: true,
         preConfirm: () => {
@@ -76,7 +76,7 @@ function Mudar(id, status, name, description) {
         confirmButtonColor: '#19C37D',
         cancelButtonColor: '#d33',
         showCancelButton: true,
-       
+        backgroundColor: '#343541',
 
         preConfirm: () => {
             const nome = document.getElementById('nome').value;
@@ -139,3 +139,4 @@ var myChart = new Chart(ctx, {
     options: options,
     
 });
+

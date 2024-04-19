@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{request.user.username}}{% endblock %}</title>
+    <link rel="shortcut icon" href="static/img/listmind.png" type="image/x-icon">
+    <title>{% block title %}Home - {{request.user.username}}{% endblock %}</title>
     <link rel="stylesheet" href="static/css/style.css">
-    <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="static/css/area.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/menu.css">
+    <link rel="stylesheet" href="static/css/pagination.css">
+    <link rel="stylesheet" href="static/css/sweet.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
         {% include 'perfil.html' %}
         {% block content %}
-            
+        
         {% endblock %}
     </div>
     <script src="static/js/script.js"></script>
     <script src="https://kit.fontawesome.com/c99caadda1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js
     "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css
     " rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

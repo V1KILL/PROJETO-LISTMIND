@@ -1,32 +1,68 @@
-<div class="perfil">
+<div class="perfil" id="perfil-menu-desktop">
     <a href="/" class="logo">ListMind</a>
     <div class="perfil-image">
-        <img src="static/img/Perfil image.jpg" alt="">
+        <img src="static/img/perfil.jpg" alt="">
         <div>
-            <p>Viktor Amaral</p>
-            <p>@victoramaral369</p>
+            <p>{{request.user.username}}</p>
         </div>
     </div>
     <div class="features">   
         <div onclick="AddMembro()" class="function">
             <i class="fa-sharp fa-solid fa-user-plus"></i>
-            <a>Adicionar Cliente</a>
-        </div>
-        <div class="function">
-            <i class="fa-sharp fa-solid fa-box-archive"></i>
-            <a href="/archived">Serviços Feitos</a> 
-        </div>
-        <div class="function">
-            <i class="fa-sharp fa-solid fa-house"></i>
-            <a href="/logout">Sair Da Conta</a> 
+            <a>Add Cliente</a>
         </div>
         <div class="function">
             <i class="fa-sharp fa-solid fa-chart-simple"></i>
             <a href="/dashboard">DashBoard</a>
         </div>
         <div class="function">
+            <i class="fa-sharp fa-solid fa-box-archive"></i>
+            <a href="/archived">S. Feitos</a> 
+        </div>
+        <div class="function">
             <i class="fa-solid fa-shield-halved"></i>
             <a href="garantidos">Garantia</a>
+        </div>
+        <div class="function">
+            <i class="fa-solid fa-house"></i>
+            <a href="/">Home</a> 
+        </div>
+        <div class="function">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <a href="/logout">Logout</a> 
+        </div>
+    </div>
+</div>
+
+<div class="perfil" id="perfil-menu-mobile">
+    <div class="features" id="features-menu-mobile">   
+        <div onclick="AddMembro()" class="function">
+            <i class="fa-sharp fa-solid fa-user-plus"></i>
+        </div>
+        <div class="function">
+            <a href="/dashboard">
+                <i class="fa-sharp fa-solid fa-chart-simple"></i>
+            </a>
+        </div>
+        <div class="function">
+            <a href="/archived">
+                <i class="fa-sharp fa-solid fa-box-archive"></i>
+            </a>
+        </div>
+        <div class="function">
+            <a href="garantidos">
+                <i class="fa-solid fa-shield-halved"></i>
+            </a>
+        </div>
+        <div class="function">
+            <a href="/">
+                <i class="fa-sharp fa-solid fa-house"></i>
+            </a>
+        </div>
+        <div class="function">
+            <a href="/logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
         </div>
     </div>
 </div>

@@ -1,0 +1,117 @@
+
+div.usersarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #e7eef7;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    padding: 0px 20px;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px 12px;
+}
+
+th, td {
+    padding: 15px;
+    border: none;
+}
+
+th {
+    color: #b8beca;
+    background-color: #f5f6fa;
+}
+
+td {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: white;
+    background-color: #2d2e39;  
+}
+
+td#startd, th#startd {
+    border-radius: 36px 0px 0px 36px;
+}
+
+td#starte, th#starte {
+    border-radius: 0px 36px 36px 0px;
+}
+
+div.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #e7eef7;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0px 20px;
+}
+
+form div.date {
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+}
+
+form div.date input {
+    width: 50%;
+}
+
+form div.search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    color: white;
+    border-radius: 36px;
+    background-color: #2d2e39;
+}
+
+form div button#search {
+    display: flex;
+    align-items: center;
+    color: white;
+    border: none;
+    background-color: transparent;
+}
+
+input {
+    outline: none;
+    padding: 14px;
+    border-radius: 36px;
+    color: white;
+    border: none;
+    background-color: #2d2e39;
+}
+
+input::placeholder{
+    color: white;
+    font-weight: 600;
+}
+
+input[type='text']{
+    width: 100%;
+}
+
+button[type='submit'] {
+    outline: none;
+    padding: 14px;
+    color: white;
+    border: none;
+    border-radius: 36px;
+    background-color: #2d2e39;
+}

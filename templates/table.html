@@ -1,5 +1,5 @@
 {% if query %}
-<h1 style="color: #2db56f; padding: 20px;">Serviços Feitos</h1>
+    <h1 id="titles">Serviços Feitos</h1>
 {% endif %}
 <table>
     <thead>
@@ -17,8 +17,8 @@
             <tr oncontextmenu="Mudar('{{cliente.id}}','{{cliente.status}}', '{{cliente.name}}', '{{cliente.defect}}')" onclick="Document('{{cliente.id}}')">
                 <td id="startd">{{ cliente.name }}</td>
                 <td>{{ cliente.defect }}</td>
-                <td>{{ cliente.price}}R$</td>
-                <td>{{ cliente.date}}</td>
+                <td>R${{ cliente.price}}</td>
+                <td>{{ cliente.get_option_display}}</td>
                 <td id="starte">{{ cliente.predicted_date }}</td>
             </tr>
         {% else %}
@@ -26,7 +26,7 @@
                 <td id="startd">{{ cliente.name }}</td>
                 <td>{{ cliente.defect }}</td>
                 <td>{{ cliente.price}}R$</td> 
-                <td>{{ cliente.get_opcao_display }}</td>
+                <td>{{ cliente.get_option_display }}</td>
                 <td id="starte">{{ cliente.predicted_date }}</td>
             </tr>
         {% endif %}
