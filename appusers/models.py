@@ -11,6 +11,7 @@ class Cliente(models.Model):
         ('1', 'Diagnóstico'),
         ('2', 'Compra'),
     }
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     defect = models.TextField()
@@ -22,9 +23,6 @@ class Cliente(models.Model):
     service = models.TextField()
     part = models.TextField()
     status = models.BooleanField(default=False)
-    
-    def get_absolute_url(self):
-        return [self.id, self.status, self.name, self.description]
 
     def __str__(self):
         return f"Serviço {self.name} de {self.user}"

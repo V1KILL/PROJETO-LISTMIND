@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage , PageNotAnInteger
 from .models import Cliente
 import datetime
 from django.contrib.auth.models import User, auth
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Sum
@@ -13,6 +13,16 @@ from io import BytesIO
 from xhtml2pdf import pisa
 # Create your views here.
 
+def ViewRecruiter(request):
+    
+    user = authenticate(username='Recrutador', password='listmind369')
+
+    if user is not None:
+        login(request, user)
+        return redirect('/')
+    else:
+        return redirect('signin')
+
 def ViewSignUp(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -21,16 +31,17 @@ def ViewSignUp(request):
         if password == password2:
             if username.isspace():
                 messages.info(request, 'Nome Vazio')
-                return redirect('register')
+                return redirect('signup')
             else:
                 if User.objects.filter(username=username).exists():
                     messages.info(request, 'Nome Existente')
-                    return redirect('register')
+                    return redirect('signup')
                 else:
                     user = User.objects.create_user(username=username, password=password)
                     user.save()
                     messages.info(request, 'Conta Criada com Sucesso')
-                    return redirect('signup')
+                    auth.login(request, user)
+                    return redirect('home')
         else:
             messages.info(request, 'Senhas não coincidem')
             return redirect('signup')
@@ -77,7 +88,7 @@ def ViewHome(request):
         clientes = Cliente.objects.filter(user=request.user).exclude(status=True)
     
 
-    paginator = Paginator(clientes, 1)
+    paginator = Paginator(clientes, 5)
     page_number = request.GET.get('page')
     try:
         clientes = paginator.page(page_number)
@@ -86,7 +97,7 @@ def ViewHome(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
 
-    return render(request, 'index2.html', {'clientes':clientes})
+    return render(request, 'archived.html', {'clientes':clientes})
 
 @login_required(login_url='/signin')
 def ViewAddClient(request, name, defect, option, predicted_date, predicted_price, price, service, part):
@@ -108,15 +119,19 @@ def ViewArchived(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
     query = True
-    return render(request, 'index2.html', {'clientes':clientes, 'query':query})
+
+    return render(request, 'archived.html', {'clientes':clientes, 'query':query})
 
 @login_required(login_url='/signin')
-def ViewServiceEdit(request, status, id,name, description):
+def ViewEditClient(request, status, id,name, description):
+
     service = Cliente.objects.get(id=id,user=request.user)
+
     if status.lower() == 'false':
         service.status = False
     else:
         service.status = True
+
     service.name = name
     service.defect = description 
     service.save()
@@ -125,14 +140,17 @@ def ViewServiceEdit(request, status, id,name, description):
     return redirect(url_anterior)
 
 @login_required(login_url='/signin')
-def ViewClientDelete(request, id):
+def ViewDeleteClient(request, id):
+
     client = Cliente.objects.get(id=id,user=request.user)
     client.delete()
+
     url_anterior = request.META.get('HTTP_REFERER')
     return redirect(url_anterior)
 
 @login_required(login_url='/signin')
 def ViewDashBoard(request):
+
     clients = Cliente.objects.filter(user=request.user)
     done_clients = clients.filter(status=True)
 
@@ -141,20 +159,20 @@ def ViewDashBoard(request):
         money += float(cliente.price) 
     
     pendents_clients= clients.filter(status=True, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
+
     meses = clients.values('date__month').annotate(total_arrecadado=Sum('price')).filter(status=True)
 
     faturamento = [0] * 12
 
     for mes in meses:
         indice = mes['date__month'] - 1
-
         faturamento[indice] = int(mes['total_arrecadado'])
-
     
     return render(request, 'dashboard.html', {'clients':clients, 'done_clients':done_clients, 'money':money,'pendent_clients':pendents_clients, 'faturamento':faturamento})
 
 @login_required(login_url='/signin')
 def ViewDocument(request, id):  
+
     cliente = Cliente.objects.get(id=id, user=request.user)
     html = render_to_string('document.html', {'cliente': cliente})
     buffer = BytesIO()
@@ -170,14 +188,17 @@ def ViewDocument(request, id):
 
 @login_required(login_url='/signin')
 def ViewGarantidos(request):
+
     clientes = Cliente.objects.filter(status=True, user=request.user, date__gte=datetime.datetime.now()-datetime.timedelta(days=90))
     
     paginator = Paginator(clientes, 5)
     page_number = request.GET.get('page')
+
     try:
         clientes = paginator.page(page_number)
     except PageNotAnInteger:
         clientes = paginator.page(1)
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
+        
     return render(request, 'garantia.html', {'clientes':clientes})

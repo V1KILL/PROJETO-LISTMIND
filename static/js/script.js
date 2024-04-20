@@ -67,7 +67,7 @@ function Mudar(id, status, name, description) {
                 <input id="feito" type="checkbox" class="swal2-checkbox" ${isChecked}>
                 <label for="feito" class="swal2-checkbox-label">Feito</label>
                 <div>
-                    <a href="/clientdelete/${id}" id="excluir" class="swal2-a">Excluir Cliente</a>
+                    <a href="/deleteclient/${id}" id="excluir" class="swal2-a">Excluir Cliente</a>
                 </div>
             </div>`,
 
@@ -96,7 +96,7 @@ function Mudar(id, status, name, description) {
     }).then(result => {
         if (result.isConfirmed) {
             const { nome, descricao, checkbox } = result.value;
-            window.location.href = `/serviceedit/${checkbox}/${id}/${nome}/${descricao}`;
+            window.location.href = `/editclient/${checkbox}/${id}/${nome}/${descricao}`;
         }
     });
 }
