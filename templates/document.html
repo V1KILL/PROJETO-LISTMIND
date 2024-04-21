@@ -5,7 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{cliente.name}}</title>
-    <link rel="stylesheet" href="../static/css/document.css">
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        div.container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header p {
+            font-weight: 600;
+        }
+
+        header h1{
+            text-decoration:underline;
+            padding-bottom: 20px;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 10px;
+        }
+
+        section p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 650;
+            border: 1px solid black;
+            padding: 8px;
+        }
+        section p span {
+            font-weight: 400;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        footer h4 {
+            padding-bottom: 60px;
+            padding-top: 10px;
+        }
+
+        footer p {
+            font-weight: 600;
+        }
+
+        footer .assinatura {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+
+        }
+        footer .assinatura h3 {
+            padding-top: 8px;
+            border-top: 1px solid black;
+        }
+
+        footer .assinatura p {
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
