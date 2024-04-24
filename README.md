@@ -32,14 +32,21 @@ This Project Was Developed to Manage Your Company's Services Quickly and Conveni
 - **Remove Service:** Allows the deletion of a service.
 - **Check Service:** Allows marking a service as completed or not completed.
 - **PDF by Service:** Allows you generate a PDF from a service.
-- **Warranty Area:** Allows you see all warranty services
-- **Completed Area:** Allows you see all completed services
+- **Warranty Area:** Allows you view all warranty services
+- **Completed Area:** Allows you view all completed services
 
 ### Filter
 
 - **Name:** Allows you filter all services by name
 - **Date:** Allows you filter all services between two dates
 - **Multiple Filters:** Allows you filter all services by name and two dates.
+
+### DashBoard
+
+- **Monthly Revenue:** Allows you view your monthly revenue
+- **Quantity of services:** Allows you view the total quantity of services
+- **Quantity of completed services:** Allows you view the quantity of completed services
+- **Quantity of warranty services:** Allows you view the quantity of warranty services
 
 ## Technologies Used
 
