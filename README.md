@@ -8,7 +8,7 @@ This Project Was Developed to Manage Your Company's Services Quickly and Conveni
 
 ## Links
 
-- [Project](https:/listminder.pythonanywhere.com/)
+- [Project](https://listminder.pythonanywhere.com/)
 
 ## Home
 
