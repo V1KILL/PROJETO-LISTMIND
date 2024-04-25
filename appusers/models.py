@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class Cliente(models.Model):
@@ -22,6 +23,9 @@ class Cliente(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     service = models.TextField()
     part = models.TextField()
+    number = PhoneNumberField()
+    additional = models.TextField()
+    payment = models.CharField(max_length=100)
     status = models.BooleanField(default=False)
 
     def __str__(self):

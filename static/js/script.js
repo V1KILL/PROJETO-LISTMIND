@@ -4,6 +4,8 @@ function AddMembro() {
         title: '<p>Novo Cliente</p>',
         html: `
             <input id="name" class="swal2-input" placeholder="Nome" autocomplete="off">
+            <input type="tel" id="telephone" value="+55 (92)" class="swal2-input" placeholder="Número de Telefone" autocomplete="off">
+            <textarea id="additional" class="swal2-textarea" placeholder="Informações Adicionais"></textarea>
             <textarea id="defect" class="swal2-textarea" placeholder="Defeito Relatado"></textarea>
             <div>
                 <select id="option" class="swal2-select">
@@ -17,6 +19,7 @@ function AddMembro() {
             <input id="price" class="swal2-input" placeholder="Valor Pago" type="number" autocomplete="off" required>
             <textarea id="service" class="swal2-textarea" placeholder="Serviço a Ser Executado"></textarea>
             <textarea id="part" class="swal2-textarea" placeholder="Peças Aplicadas"></textarea>
+            <textarea id="payment" class="swal2-textarea" placeholder="Forma de Pagamento"></textarea>
         `,
         
         confirmButtonText: 'Adicionar Cliente',
@@ -35,14 +38,16 @@ function AddMembro() {
             const predicted_price = Swal.getPopup().querySelector('#predicted-price').value;
             const service = Swal.getPopup().querySelector('#service').value;
             const part = Swal.getPopup().querySelector('#part').value;
+            const telephone = Swal.getPopup().querySelector('#telephone').value;
+            const additional = Swal.getPopup().querySelector('#additional').value;
+            const payment = Swal.getPopup().querySelector('#payment').value;
 
-            if (!name || !price || !defect || !option || !predicted_date || !predicted_price || !service || !part) {
+            if (!name || !price || !defect || !option || !predicted_date || !predicted_price || !service || !part |!telephone | !additional |  !payment) {
                 Swal.showValidationMessage('Todos os campos são obrigatórios');
                 return false;
             }
-
             
-            window.location.href = `/addclient/${name}/${defect}/${option}/${predicted_date}/${predicted_price}/${price}/${service}/${part}`;
+            window.location.href = `/addclient/${name}/${defect}/${option}/${predicted_date}/${predicted_price}/${price}/${service}/${part}/${telephone}/${additional}/${payment}`;
         },
         allowOutsideClick: () => !Swal.isLoading(),
     });

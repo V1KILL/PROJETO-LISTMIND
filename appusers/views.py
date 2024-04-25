@@ -100,8 +100,8 @@ def ViewHome(request):
     return render(request, 'archived.html', {'clientes':clientes})
 
 @login_required(login_url='/signin')
-def ViewAddClient(request, name, defect, option, predicted_date, predicted_price, price, service, part):
-    newclient = Cliente.objects.create(name=name, defect=defect, option=option, predicted_date = predicted_date, predicted_price = predicted_price, price=price, service= service, part= part, user=request.user)
+def ViewAddClient(request, name, defect, option, predicted_date, predicted_price, price, service, part, telephone, additional, payment):
+    newclient = Cliente.objects.create(name=name, defect=defect, option=option, predicted_date = predicted_date, predicted_price = predicted_price, price=price, service= service, part= part, user=request.user, number=telephone, additional=additional, payment=payment)
     newclient.save()
 
     return redirect('/')
