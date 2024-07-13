@@ -31,7 +31,7 @@ th {
 td {
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.4em;
     color: white;
     background-color: #2d2e39;  
 }
@@ -46,6 +46,7 @@ td#starte, th#starte {
 
 div.container {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     width: 100%;

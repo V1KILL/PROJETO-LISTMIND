@@ -32,7 +32,7 @@ section#CandLogin {
     padding: 20px;
     width: 100%;
     background-color: white;
-    border-radius: 8px
+    border-radius: 12px;
 }
 
 /*Título Login*/
@@ -54,6 +54,11 @@ section#CandLogin {
     align-self: flex-end;
     font-weight: 600;
     color: #333333;
+    transition: 0.4s;
+}
+
+.form form a:hover {
+    color: #44B78B;
 }
 
 /*Inputs*/
@@ -66,6 +71,12 @@ section#CandLogin {
     transition: border-color 0.4s ease;
 }
 
+.form form input:hover {
+   
+    border-bottom: 2px solid #44B78B;
+   
+}
+
 .form form input::placeholder {
     color: grey;
 }
@@ -76,8 +87,14 @@ section#CandLogin {
     background-color: #333333;
     font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     transition: 0.4s ease;
+}
+
+.form form input#submit:hover {
+    
+    background-color: #44B78B;
+    
 }
 
 /*Messages*/

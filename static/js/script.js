@@ -24,7 +24,7 @@ function AddMembro() {
         
         confirmButtonText: 'Adicionar Cliente',
         cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#19C37D',
+        confirmButtonColor: '#44B78B',
         cancelButtonColor: '#d33',
         backgroundColor: '#343541',
         showLoaderOnConfirm: true,
